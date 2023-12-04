@@ -1,6 +1,6 @@
 # EEET2574 - Assignment 1 Data Pipeline with Docker
-[GitHub Repository](https://github.com/nhattran1206/EEET2574---Assignment-1-Data-Pipeline-with-Docker)
-[Video Demonstration]() - Not Available Yet
+- [GitHub Repository](https://github.com/nhattran1206/EEET2574---Assignment-1-Data-Pipeline-with-Docker)
+- [Video Demonstration]() - Not Available Yet
 
 # Docker Kafka Cassandra Setup Guide (with openweathermapAPI)
 
