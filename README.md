@@ -19,6 +19,63 @@ option for data visualization.
 - [Docker](https://docs.docker.com/get-docker/) 
 - [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/install) 
 - Access to [OpenWeatherMap API](https://openweathermap.org/api)
+- To install Git, you can follow the instructions provided for your specific operating system. Here are the instructions for some commonly used operating systems:
+
+    ### 1. **Windows:**
+
+    Git provides a Windows installer, which you can download from the official Git website:
+
+    - Visit [Git for Windows](https://gitforwindows.org/).
+    - Download the installer.
+    - Run the installer and follow the on-screen instructions.
+    - During installation, you can choose the default settings for most options.
+
+    After installation, you can open the Git  terminal or use Git from the Command Prompt.
+
+    ### 2. **macOS:**
+
+    Git is usually pre-installed on macOS. However, if you need a more recent version or want to install it manually, you can use the following methods:
+
+    - **Homebrew:**
+    ```
+    brew install git
+    ```
+
+    - **MacPorts:**
+    ```
+    sudo port install git
+    ```
+
+    ### 3. **Linux (Debian/Ubuntu):**
+
+    For Debian-based Linux distributions, you can use the package manager to install Git:
+
+    ```
+    sudo apt update
+    sudo apt install git
+    ```
+
+    ### 4. **Linux (Red Hat/Fedora):**
+
+    For Red Hat-based Linux distributions, you can use the package manager to install Git:
+
+    ```
+    sudo dnf install git
+    ```
+
+    ### 5. **Linux (openSUSE):**
+
+    For openSUSE, you can use the package manager to install Git:
+
+    ```
+    sudo zypper install git
+    ```
+
+    After installation, you can verify that Git is installed by opening a terminal and running:
+
+    ```
+    git --version
+    ```
 
 
 ## Setup Steps
@@ -131,7 +188,7 @@ docker-compose -f consumers/docker-compose.yml up
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra bash 
+docker exec -it cassandra  
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -188,7 +245,7 @@ docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-
 
 2. Go back to Cassandra Exec by
 ```
-docker exec -it cassandra bash
+docker exec -it cassandra 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
@@ -284,7 +341,7 @@ docker-compose -f consumers/docker-compose.yml up
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra bash  
+docker exec -it cassandra   
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -357,7 +414,7 @@ docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-
 2. Go back to Cassandra Exec by
 
 ```
-docker exec -it cassandra bash
+docker exec -it cassandra 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
@@ -457,7 +514,7 @@ docker-compose -f consumers/docker-compose.yml up
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra bash  
+docker exec -it cassandra   
 ```
 
 In the shell, execute Cassandra Query Language Shell:
