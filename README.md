@@ -324,7 +324,7 @@ Notebook.
 
 - `flight_id`: A unique identifier for each flight record. 
 - `airline`: The name of the airline operating the flight. 
--`arrival_airport`: The code or identifier for the airport of
+- `arrival_airport`: The code or identifier for the airport of
 arrival. 
 - `arrival_date`: The date of arrival in the format 'YYYY-MM-DD'. 
 - `arrival_time`: The time of arrival in the format 'HH:MM:SS.SSSSSSSSS'. 
