@@ -183,7 +183,9 @@ docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-
 
 
 2. Go back to Cassandra Exec by
-repeating step 12
+```
+docker exec -it cassandra bash
+```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
 table for fakerdata
@@ -349,7 +351,10 @@ docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-
 
 
 2. Go back to Cassandra Exec by
-repeating step 12
+
+```
+docker exec -it cassandra bash
+```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
 table for fakerdata
