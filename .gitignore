@@ -126,5 +126,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#Ignore openweathermap_service.conf
+#Ignore openweathermap_service.conf and .env
 openweathermap_service.conf
+.env

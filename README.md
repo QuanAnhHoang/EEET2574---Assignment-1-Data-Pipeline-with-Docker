@@ -431,6 +431,14 @@ next step. Otherwise, go into the Kafka-connect container shell and run
 
 
 7. Start Flight Logs Producer:
+**Note:** If you clone the repository from my GitHub. Then use these commands to create a .env file
+
+```
+cd flightlogs-producer
+echo 'access_token="030b6f00"' > .env
+echo 'schema_id="d9720740"' >> .env
+```
+else proceed to next step.
 
 ``` 
 docker-compose -f flightlogs-producer/docker-compose.yml up -d 

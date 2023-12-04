@@ -1,18 +1,21 @@
 import os
 import time
+from dotenv import load_dotenv
 import requests
 from kafka import KafkaProducer
 import json
 from datetime import date, datetime
 
+load_dotenv()
+
 KAFKA_BROKER_URL = os.environ.get("KAFKA_BROKER_URL")
 TOPIC_NAME = os.environ.get("TOPIC_NAME")
 SLEEP_TIME = int(os.environ.get("SLEEP_TIME", 5))
-MOCKAROO_API_KEY = os.environ.get("MOCKAROO_API_KEY", "030b6f00")  # Your Mockaroo API key
-MOCKAROO_SCHEMA_ID = "d9720740"  # Replace with your Mockaroo schema ID
+MOCKAROO_API_KEY = os.environ.get("access_token")  # Mockaroo API key
+MOCKAROO_SCHEMA_ID = os.environ.get("schema_id")  # Mockaroo schema ID
 
 def get_mockaroo_data():
-    # Make a request to the Mockaroo API to get fake data for one row
+    # Make a request to the Mockaroo API to get data for one row
     url = f"https://api.mockaroo.com/api/{MOCKAROO_SCHEMA_ID}.json"
     params = {"count": 1, "key": MOCKAROO_API_KEY}
     print("Requesting URL:", url)
