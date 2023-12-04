@@ -89,6 +89,7 @@ password: bigbang)
 Add a data pipeline cluster:  
 - Cluster Name: mycluster  
 - Cluster Zookeeper: zookeeper:2181 
+
 Enable the following options:  
 - Enable JMX Polling  
 - Poll consumer information  
@@ -241,9 +242,9 @@ password: bigbang)
 Add a data pipeline cluster:  
 - Cluster Name: mycluster  
 - Cluster Zookeeper: zookeeper:2181 
+
 Enable the following options:  
-- Enable JMX
-Polling  
+- Enable JMX Polling  
 - Poll consumer information 
 - Enable Active OffsetCache Click
 Save.
@@ -403,6 +404,7 @@ password: bigbang)
 Add a data pipeline cluster:  
 - Cluster Name: mycluster  
 - Cluster Zookeeper: zookeeper:2181 
+
 Enable the following options:  
 - Enable JMX Polling  
 - Poll consumer information  
