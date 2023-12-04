@@ -8,10 +8,9 @@ option for data visualization.
 
 ## Prerequisites
 
-[Docker](https://docs.docker.com/get-docker/) - [WSL (Windows
-Subsystem for
-Linux)](https://docs.microsoft.com/en-us/windows/wsl/install) - Access
-to [OpenWeatherMap API](https://openweathermap.org/api)
+- [Docker](https://docs.docker.com/get-docker/) 
+- [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/install) 
+- Access to [OpenWeatherMap API](https://openweathermap.org/api)
 
 ## Setup Steps
 
@@ -23,33 +22,33 @@ replace `your_api_key` with your OpenWeatherMap API key.
 
 3. Open a terminal and navigate to your directory:
 
-```bash 
+``` 
 cd your_directorydocker-kafka-cassandra-main 
 ```
 
 4. Create Docker networks for Kafka and Cassandra:
 
-```bash 
+``` 
 docker network create kafka-network 
 docker network create cassandra-network 
 ```
 
 5. Start Cassandra container:
 
-```bash 
+``` 
 docker-compose -f cassandra/docker-compose.yml up -d 
 ```
 
 6. Start Kafka container:
 
 ```
-bash docker-compose -f kafka/docker-compose.yml up -d 
+ docker-compose -f kafka/docker-compose.yml up -d 
 ```
 
 7. Check if both containers are running:
 
 ```
-bash docker ps -a 
+ docker ps -a 
 ```
 
 8. Access Kafka UI frontend:
@@ -68,7 +67,7 @@ Save.
 
 9. In WSL, execute:
 
-```bash 
+``` 
 curl -X GET http://localhost:8083/connectors 
 ```
 
@@ -78,13 +77,13 @@ next step. Otherwise, go into the Kafka-connect container shell and run
 
 10. Start OpenWeatherMap Producer:
 
-```bash 
+``` 
 docker-compose -f owm-producer/docker-compose.yml up 
 ```
 
 11. Start consumers:
 
-```bash 
+``` 
 docker-compose -f consumers/docker-compose.yml up 
 ```
 
@@ -92,27 +91,27 @@ docker-compose -f consumers/docker-compose.yml up
 
 Open a shell from the Cassandra container:
 
-```bash 
-docker exec -it cassandra bash 
+``` 
+docker exec -it cassandra  
 ```
 
 In the shell, execute Cassandra Query Language Shell:
 
-```bash 
+``` 
 cqlsh --cqlversion=3.4.4 127.0.0.1 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and then
 select data from the `weatherreport` table:
 
-```cql 
+```
 use kafkapipeline; 
 select * from weatherreport; 
 ```
 
 13. Data Visualization for Data in Cassandra:
 
-```bash 
+``` 
 docker-compose -f data-vis/docker-compose.yml up -d 
 ```
 
@@ -137,7 +136,7 @@ you'll visualize the data in Jupyter Notebook.
 
 1. Take down all containers except Cassandra:
 
-```bash
+```
 docker-compose -f data-vis/docker-compose.yml down # stop visualization node 
 docker-compose -f consumers/docker-compose.yml down # stop the consumers 
 docker-compose -f owm-producer/docker-compose.yml down # stop open weather map producer 
@@ -149,7 +148,7 @@ repeating step 12
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
 table for fakerdata
 
-``` cql
+``` 
 CREATE TABLE IF NOT EXISTS fakerdata ( 
     id UUID PRIMARY KEY,
     address TEXT, city TEXT, 
@@ -181,13 +180,13 @@ modification in this part is specified in the directories below.
 
 3. Start Kafka container:
 
-```bash 
+``` 
 docker-compose -f kafka/docker-compose.yml up -d 
 ```
 
 4. Check if both containers are running:
 
-```bash 
+``` 
 docker ps -a 
 ```
 
@@ -208,7 +207,7 @@ Save.
 
 6. In WSL, execute:
 
-```bash 
+``` 
 curl -X GET http://localhost:8083/connectors 
 ```
 
@@ -218,13 +217,13 @@ next step. Otherwise, go into the Kafka-connect container shell and run
 
 7. Start Faker Producer:
 
-```bash 
+``` 
 docker-compose -f faker-producer/docker-compose.yml up 
 ```
 
 8. Start consumers:
 
-```bash 
+``` 
 docker-compose -f consumers/docker-compose.yml up 
 ```
 
@@ -232,27 +231,27 @@ docker-compose -f consumers/docker-compose.yml up
 
 Open a shell from the Cassandra container:
 
-```bash 
-docker exec -it cassandra bash 
+``` 
+docker exec -it cassandra  
 ```
 
 In the shell, execute Cassandra Query Language Shell:
 
-```bash 
+``` 
 cqlsh --cqlversion=3.4.4 127.0.0.1 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and then
 select data from the `weatherreport` table:
 
-```cql 
+``` 
 use kafkapipeline; 
 select * from fakerdata; 
 ```
 
 10. Data Visualization for Data in Cassandra:
 
-```bash 
+``` 
 docker-compose -f data-vis/docker-compose.yml up -d 
 ```
 
@@ -289,7 +288,7 @@ arrival.
 
 1. Take down all containers except Cassandra:
 
-```bash 
+``` 
 docker-compose -f data-vis/docker-compose.yml down # stop visualization node 
 docker-compose -f consumers/docker-compose.yml down # stop the consumers 
 docker-compose -f owm-producer/docker-compose.yml down # stop open weather map producer 
@@ -301,7 +300,7 @@ repeating step 12
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
 table for fakerdata
 
-``` cql
+``` 
 CREATE TABLE IF NOT EXISTS flightlogsdata ( 
     flight_id TEXT PRIMARY KEY, 
     flight_number INT, 
@@ -328,13 +327,13 @@ modification in this part is specified in the directories below.
 
 3. Start Kafka container:
 
-```bash 
+``` 
 docker-compose -f kafka/docker-compose.yml up -d 
 ```
 
 4. Check if both containers are running:
 
-```bash 
+``` 
 docker ps -a 
 ```
 
@@ -354,7 +353,7 @@ Save.
 
 6. In WSL, execute:
 
-```bash 
+``` 
 curl -X GET http://localhost:8083/connectors 
 ```
 
@@ -364,13 +363,13 @@ next step. Otherwise, go into the Kafka-connect container shell and run
 
 7. Start Flight Logs Producer:
 
-```bash 
+``` 
 docker-compose -f flightlogs-producer/docker-compose.yml up -d 
 ```
 
 8. Start consumers:
 
-```bash 
+``` 
 docker-compose -f consumers/docker-compose.yml up 
 ```
 
@@ -378,27 +377,27 @@ docker-compose -f consumers/docker-compose.yml up
 
 Open a shell from the Cassandra container:
 
-```bash 
-docker exec -it cassandra bash 
+``` 
+docker exec -it cassandra  
 ```
 
 In the shell, execute Cassandra Query Language Shell:
 
-```bash 
+``` 
 cqlsh --cqlversion=3.4.4 127.0.0.1 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and then
 select data from the `weatherreport` table:
 
-```cql 
+```
 use kafkapipeline; 
 select * from flightlogsdata; 
 ```
 
 10. Data Visualization for Data in Cassandra:
 
-```bash 
+``` 
 docker-compose -f data-vis/docker-compose.yml up -d 
 ```
 
