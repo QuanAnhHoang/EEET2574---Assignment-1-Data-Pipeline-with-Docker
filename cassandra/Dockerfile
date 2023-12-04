@@ -1,0 +1,14 @@
+FROM cassandra:3.11.1
+
+WORKDIR /opt/scripts
+
+# Copy schema files into /opt/scripts
+RUN echo "Copying files..."
+COPY [ "schema.cql", "keyspace.cql" , "bootstrap.sh", "wait-for-it.sh" , "./" ]
+RUN echo "Setting permissions..."
+RUN chmod +x /opt/scripts/*
+# Set the entrypoint to the bootstrap script
+ENTRYPOINT [ "/opt/scripts/bootstrap.sh" ]
+
+# Run DSE in search mode in the foreground by default
+CMD [ "dse", "cassandra", "-s", "-g", "-f" ]
