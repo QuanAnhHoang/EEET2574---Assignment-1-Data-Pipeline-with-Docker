@@ -431,7 +431,7 @@ next step. Otherwise, go into the Kafka-connect container shell and run
 
 
 7. Start Flight Logs Producer:
-**Note:** If you clone the repository from my GitHub. Then use these commands to create a .env file
+- **Note:** If you clone the repository from my GitHub. Then use these commands to create a .env file
 
 ```
 cd flightlogs-producer
