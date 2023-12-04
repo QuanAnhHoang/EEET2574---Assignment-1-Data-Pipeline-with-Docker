@@ -1,10 +1,14 @@
 # Docker Kafka Cassandra Setup Guide (with openweathermapAPI)
 
+
+## Objective
+
 This guide will walk you through the process of setting up Docker
 containers for Kafka and Cassandra, along with producers and consumers,
 to create a data pipeline. The data pipeline will fetch weather
 information from OpenWeatherMap and store it in Cassandra, with the
 option for data visualization.
+
 
 ## Prerequisites
 
@@ -12,50 +16,72 @@ option for data visualization.
 - [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/en-us/windows/wsl/install) 
 - Access to [OpenWeatherMap API](https://openweathermap.org/api)
 
+
 ## Setup Steps
 
 1. Use this docker-kafka-cassandra-main folder directly for this assignment (designated only for lecturer of EEET2574) or clone it from GitHub (others)
-
+Open Command Prompt (CMD):
+If your option is to clone from GitHub then:
 ```
+cd to/your/desired/directory
 git clone https://github.com/nhattran1206/EEET2574---Assignment-1-Data-Pipeline-with-Docker.git
 cd EEET2574---Assignment-1-Data-Pipeline-with-Docker
 ```
+else 
+```
+cd */docker-kafka-cassandra-main
+```
+
 
 2. Open the `owm-producer/openweathermap_service.cfg` file and
 replace `your_api_key` with your OpenWeatherMap API key. (Make sure to have an available account on [OpenWeatherMap API](https://openweathermap.org))
 
-3. Open a terminal and navigate to your directory:
+**Note:** If you clone the repository from my GitHub. Then use these commands to create openweather_service.cfg
 
-``` 
-cd your_directorydocker-kafka-cassandra-main 
 ```
+cd owm-producer
+echo [openweathermap_api_credential] > openweathermap_service.cfg
+echo access_token=your_api_key >> openweathermap_service.cfg
+```
+else proceed to next step.
 
-4. Create Docker networks for Kafka and Cassandra:
+
+3. Create Docker networks for Kafka and Cassandra:
 
 ``` 
 docker network create kafka-network 
 docker network create cassandra-network 
 ```
 
-5. Start Cassandra container:
+
+**_Importance:_** From this step ahead, let's assume that we are
+using my already-modified folder apart from the original folder delivered to me in the tutorial session, so all of the code
+modification (if any) in this part is specified in the directories below.
+ - `no modification`
+
+
+4. Start Cassandra container:
 
 ``` 
 docker-compose -f cassandra/docker-compose.yml up -d 
 ```
 
-6. Start Kafka container:
+
+5. Start Kafka container:
 
 ```
  docker-compose -f kafka/docker-compose.yml up -d 
 ```
 
-7. Check if both containers are running:
+
+6. Check if both containers are running:
 
 ```
  docker ps -a 
 ```
 
-8. Access Kafka UI frontend:
+
+7. Access Kafka UI frontend:
 
 Open [http://localhost:9000](http://localhost:9000) (username: admin;
 password: bigbang)
@@ -69,7 +95,8 @@ Enable the following options:
 - Enable Active OffsetCache Click
 Save.
 
-9. In WSL, execute:
+
+8. In WSL, execute:
 
 ``` 
 curl -X GET http://localhost:8083/connectors 
@@ -79,24 +106,27 @@ If the output is `["twittersink","weathersink","flightlogssink","fakersink"]`, p
 next step. Otherwise, go into the Kafka-connect container shell and run
 `./start-and-wait.sh`.
 
-10. Start OpenWeatherMap Producer:
+
+9. Start OpenWeatherMap Producer:
 
 ``` 
 docker-compose -f owm-producer/docker-compose.yml up 
 ```
 
-11. Start consumers:
+
+10. Start consumers:
 
 ``` 
 docker-compose -f consumers/docker-compose.yml up 
 ```
 
-12. Check if data is arriving in Cassandra DB:
+
+11. Check if data is arriving in Cassandra DB:
 
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra  
+docker exec -it cassandra bash 
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -113,7 +143,8 @@ use kafkapipeline;
 select * from weatherreport; 
 ```
 
-13. Data Visualization for Data in Cassandra:
+
+12. Data Visualization for Data in Cassandra:
 
 ``` 
 docker-compose -f data-vis/docker-compose.yml up -d 
@@ -127,7 +158,10 @@ Cassandra, created a data pipeline, and visualized the data. If you
 encounter any issues, refer to the troubleshooting section in the
 documentation.
 
+
+
 # Faker Data Pipeline Setup Guide (Continue from above)
+
 
 ## Objective
 
@@ -135,6 +169,7 @@ Set up a Faker Data Pipeline to generate and process synthetic data
 using Faker API. The pipeline will produce data using a faker producer,
 consume it through Kafka, and store it in Cassandra. Additionally,
 you'll visualize the data in Jupyter Notebook.
+
 
 ## Setup Steps
 
@@ -146,6 +181,8 @@ docker-compose -f consumers/docker-compose.yml down # stop the consumers
 docker-compose -f owm-producer/docker-compose.yml down # stop open weather map producer 
 docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-manager and kafka-connect services 
 ``` 
+
+
 2. Go back to Cassandra Exec by
 repeating step 12
 
@@ -173,14 +210,16 @@ CREATE TABLE IF NOT EXISTS fakerdata (
     );
  ```
 
+
 **_Importance:_** From this step ahead, let's assume that we are
-using my docker-kafka-cassandra-main folder, all of the code
-modification in this part is specified in the directories below.
+using my already-modified folder apart from the original folder delivered to me in the tutorial session, so all of the code
+modification (if any) in this part is specified in the directories below.
 
 - `*/kafka` 
 - `*/faker-producer` 
 - `*/consumers` 
 - `*/data-vis`
+
 
 3. Start Kafka container:
 
@@ -209,6 +248,7 @@ Polling
 - Enable Active OffsetCache Click
 Save.
 
+
 6. In WSL, execute:
 
 ``` 
@@ -219,11 +259,13 @@ If the output is `["twittersink","weathersink","flightlogssink","fakersink"]`, p
 next step. Otherwise, go into the Kafka-connect container shell and run
 `./start-and-wait.sh`.
 
+
 7. Start Faker Producer:
 
 ``` 
 docker-compose -f faker-producer/docker-compose.yml up 
 ```
+
 
 8. Start consumers:
 
@@ -231,12 +273,13 @@ docker-compose -f faker-producer/docker-compose.yml up
 docker-compose -f consumers/docker-compose.yml up 
 ```
 
+
 9. Check if data is arriving in Cassandra DB:
 
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra  
+docker exec -it cassandra bash  
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -253,6 +296,7 @@ use kafkapipeline;
 select * from fakerdata; 
 ```
 
+
 10. Data Visualization for Data in Cassandra:
 
 ``` 
@@ -262,7 +306,10 @@ docker-compose -f data-vis/docker-compose.yml up -d
 Open [http://localhost:8888](http://localhost:8888) for data
 visualization.
 
+
+
 # Flight Logs Data Pipeline Setup Guide (Continue from above)
+
 
 ## Objective
 
@@ -272,6 +319,7 @@ using randomly generated data from Mockaroo website achieved by using
 schema id and API key from the site, consume it through Kafka, and store
 it in Cassandra. Additionally, you'll visualize the data in Jupyter
 Notebook.
+
 
 **Data Dictionary**
 
@@ -288,6 +336,7 @@ arrival.
 - `flight_number`: The flight number assigned to the flight. 
 - `passenger_count`: The number of passengers on the flight.
 
+
 ## Setup Steps
 
 1. Take down all containers except Cassandra:
@@ -298,6 +347,8 @@ docker-compose -f consumers/docker-compose.yml down # stop the consumers
 docker-compose -f owm-producer/docker-compose.yml down # stop open weather map producer 
 docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-manager and kafka-connect services 
 ``` 
+
+
 2. Go back to Cassandra Exec by
 repeating step 12
 
@@ -321,13 +372,14 @@ CREATE TABLE IF NOT EXISTS flightlogsdata (
 ```
 
 **_Importance:_** From this step ahead, let's assume that we are
-using my docker-kafka-cassandra-main folder, all of the code
-modification in this part is specified in the directories below.
+using my already-modified folder apart from the original folder delivered to me in the tutorial session, so all of the code
+modification (if any) in this part is specified in the directories below.
 
 - `*/kafka` 
 - `*/flightlogs-producer` 
 - `*/consumers` 
 - `*/data-vis`
+
 
 3. Start Kafka container:
 
@@ -335,11 +387,13 @@ modification in this part is specified in the directories below.
 docker-compose -f kafka/docker-compose.yml up -d 
 ```
 
+
 4. Check if both containers are running:
 
 ``` 
 docker ps -a 
 ```
+
 
 5. Access Kafka UI frontend:
 
@@ -355,6 +409,7 @@ Enable the following options:
 - Enable Active OffsetCache Click
 Save.
 
+
 6. In WSL, execute:
 
 ``` 
@@ -365,11 +420,13 @@ If the output is `["twittersink","weathersink","flightlogssink","fakersink"]`, p
 next step. Otherwise, go into the Kafka-connect container shell and run
 `./start-and-wait.sh`.
 
+
 7. Start Flight Logs Producer:
 
 ``` 
 docker-compose -f flightlogs-producer/docker-compose.yml up -d 
 ```
+
 
 8. Start consumers:
 
@@ -377,12 +434,13 @@ docker-compose -f flightlogs-producer/docker-compose.yml up -d
 docker-compose -f consumers/docker-compose.yml up 
 ```
 
+
 9. Check if data is arriving in Cassandra DB:
 
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra  
+docker exec -it cassandra bash  
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -399,6 +457,7 @@ use kafkapipeline;
 select * from flightlogsdata; 
 ```
 
+
 10. Data Visualization for Data in Cassandra:
 
 ``` 
@@ -408,9 +467,12 @@ docker-compose -f data-vis/docker-compose.yml up -d
 Open [http://localhost:8888](http://localhost:8888) for data
 visualization.
 
+
+
 # Visualization and Analysis
 
 Descriptions for the charts will be discussed below.
+
 
 1. **Top 10 Most Common Job Titles:**  
 - Description: This barchart displays the top 10 most common job titles generated using Faker
@@ -419,6 +481,7 @@ corresponds to the count of that job title in the dataset.
 - Interpretation: The chart provides an overview of the distribution of
 job titles in the generated dataset, highlighting the most frequently
 occurring job titles.
+
 
 2. **Temperature Trends - Ho Chi Minh City vs. Tokyo:**  
 - Description: This line chart compares the average temperatures
@@ -431,6 +494,7 @@ comparison of temperature trends in Ho Chi Minh City and Tokyo,
 providing insights into how the "feels-like" temperature compares to
 the average temperature over time.
 
+
 3. **Top 10 Busiest Routes by Passenger Count:**  
 - Description: This bar chart illustrates the top 10 busiest flight routes based on the
 total passenger count. Each bar represents a flight route, and the
@@ -439,6 +503,7 @@ route.
 - Interpretation: The chart highlights the routes with the
 highest passenger traffic, providing valuable information about the
 popularity of different flight connections.
+
 
 4. **Top 3 Most Common Airlines:**  
 - Description: This bar chart displays the top three most common airlines in the flight logs dataset.
