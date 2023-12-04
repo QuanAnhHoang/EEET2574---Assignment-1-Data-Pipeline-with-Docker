@@ -155,9 +155,7 @@ Open [http://localhost:8888](http://localhost:8888) for data
 visualization.
 
 Now, you have successfully set up the Docker containers for Kafka and
-Cassandra, created a data pipeline, and visualized the data. If you
-encounter any issues, refer to the troubleshooting section in the
-documentation.
+Cassandra, created a data pipeline, and visualized the data.
 
 
 
