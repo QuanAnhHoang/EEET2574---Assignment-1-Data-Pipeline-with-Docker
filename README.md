@@ -14,11 +14,15 @@ option for data visualization.
 
 ## Setup Steps
 
-1. [Download the
-repository](https://rmit.instructure.com/courses/131316/files/34967075?wrap=1)
+1. Use this docker-kafka-cassandra-main folder directly for this assignment (designated only for lecturer of EEET2574) or clone it from GitHub (others)
+
+```
+git clone https://github.com/nhattran1206/EEET2574---Assignment-1-Data-Pipeline-with-Docker.git
+cd EEET2574---Assignment-1-Data-Pipeline-with-Docker
+```
 
 2. Open the `owm-producer/openweathermap_service.cfg` file and
-replace `your_api_key` with your OpenWeatherMap API key.
+replace `your_api_key` with your OpenWeatherMap API key. (Make sure to have an available account on [OpenWeatherMap API](https://openweathermap.org))
 
 3. Open a terminal and navigate to your directory:
 
