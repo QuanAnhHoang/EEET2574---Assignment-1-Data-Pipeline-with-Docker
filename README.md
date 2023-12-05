@@ -506,7 +506,8 @@ library. Each bar represents a job title, and the height of the bar
 corresponds to the count of that job title in the dataset.  
 - Interpretation: The chart provides an overview of the distribution of
 job titles in the generated dataset, highlighting the most frequently
-occurring job titles.
+occurring job titles. The result helps relevant bodies understand and 
+make data-driven decisions to target dominating groups of customers within their domain.
 
 
 2. **Temperature Trends - Ho Chi Minh City vs. Tokyo:**  
@@ -518,7 +519,8 @@ temperature in Kelvin.
 - Interpretation: The chart allows a visual
 comparison of temperature trends in Ho Chi Minh City and Tokyo,
 providing insights into how the "feels-like" temperature compares to
-the average temperature over time.
+the average temperature over time. This provide valuable insights of the fact that the "feels_like" temperature in HCM 
+surpasses that in Tokyo, suggesting weather conditions that might be perceived as warmer in HCM during this time.
 
 
 3. **Top 10 Busiest Routes by Passenger Count:**  
@@ -528,7 +530,7 @@ height of the bar corresponds to the total number of passengers on that
 route.  
 - Interpretation: The chart highlights the routes with the
 highest passenger traffic, providing valuable information about the
-popularity of different flight connections.
+popularity of different flight connections. This insight could be utilized for airlines to strategize their route planning and marketing efforts.
 
 
 4. **Top 3 Most Common Airlines:**  
@@ -537,4 +539,4 @@ Each bar represents an airline, and the height of the bar corresponds to
 the number of flights operated by that airline.  
 - Interpretation: The chart offers insights into the dominance of certain airlines in the
 dataset, showcasing the airlines that have the highest frequency of
-flights.
+flights, potentially indicating a strong market presence or a focus on specific routes.
