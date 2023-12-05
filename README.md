@@ -7,7 +7,7 @@
 
 ## Objective
 
-This guide will walk you through the process of setting up Docker
+This guide will walk you through the process of setting up Docker  
 containers for Kafka and Cassandra, along with producers and consumers,
 to create a data pipeline. The data pipeline will fetch weather
 information from OpenWeatherMap and store it in Cassandra, with the
@@ -188,7 +188,7 @@ docker-compose -f consumers/docker-compose.yml up
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra  
+docker exec -it cassandra bash
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -245,7 +245,12 @@ docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-
 
 2. Go back to Cassandra Exec by
 ```
-docker exec -it cassandra 
+docker exec -it cassandra bash
+```
+In the shell, execute Cassandra Query Language Shell:
+
+``` 
+cqlsh --cqlversion=3.4.4 127.0.0.1 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
@@ -341,7 +346,7 @@ docker-compose -f consumers/docker-compose.yml up
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra   
+docker exec -it cassandra bash
 ```
 
 In the shell, execute Cassandra Query Language Shell:
@@ -414,7 +419,12 @@ docker-compose -f kafka/docker-compose.yml down # stop zookeeper, broker, kafka-
 2. Go back to Cassandra Exec by
 
 ```
-docker exec -it cassandra 
+docker exec -it cassandra bash
+```
+In the shell, execute Cassandra Query Language Shell:
+
+``` 
+cqlsh --cqlversion=3.4.4 127.0.0.1 
 ```
 
 In Cassandra QL Shell, use the `kafkapipeline` database and create a
@@ -514,7 +524,7 @@ docker-compose -f consumers/docker-compose.yml up
 Open a shell from the Cassandra container:
 
 ``` 
-docker exec -it cassandra   
+docker exec -it cassandra bash
 ```
 
 In the shell, execute Cassandra Query Language Shell:
