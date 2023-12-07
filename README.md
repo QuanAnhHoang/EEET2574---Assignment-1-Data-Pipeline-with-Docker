@@ -22,7 +22,7 @@ option for data visualization.
 - [Git](https://git-scm.com/downloads)
 ## Setup Steps
 
-1. Use this docker-kafka-cassandra-main folder directly for this assignment (designated only for lecturer of EEET2574) or clone it from GitHub (others)
+1. Use this docker-kafka-cassandra-main folder directly for this assignment (designated only for lecturer of EEET2574) or clone it from GitHub (others) <br>
 Open Command Prompt (CMD):
 If your option is to clone from GitHub then:
 ```
