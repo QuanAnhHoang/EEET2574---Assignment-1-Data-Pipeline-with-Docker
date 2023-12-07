@@ -14,6 +14,7 @@ SLEEP_TIME = int(os.environ.get("SLEEP_TIME", 5))
 
 fake = Faker()
 
+#generate more than 10 different fields
 def get_registered_user():
     return {
         "id": str(fake.uuid4()),

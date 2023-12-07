@@ -1,6 +1,6 @@
 # EEET2574 - Assignment 1 Data Pipeline with Docker
 - [GitHub Repository](https://github.com/nhattran1206/EEET2574---Assignment-1-Data-Pipeline-with-Docker)
-- [Video Demonstration]() - Not Available Yet
+- [Video Documentation](https://youtu.be/cGjxTrcWEwA) 
 
 # Docker Kafka Cassandra Setup Guide (with openweathermapAPI)
 
@@ -450,7 +450,7 @@ echo 'schema_id="d9720740"' >> .env
 else proceed to next step.
 
 ``` 
-docker-compose -f flightlogs-producer/docker-compose.yml up -d 
+docker-compose -f flightlogs-producer/docker-compose.yml up
 ```
 
 

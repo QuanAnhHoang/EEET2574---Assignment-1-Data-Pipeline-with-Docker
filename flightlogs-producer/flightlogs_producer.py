@@ -6,6 +6,7 @@ from kafka import KafkaProducer
 import json
 from datetime import date, datetime
 
+#using dotenv to hide credentials
 load_dotenv()
 
 KAFKA_BROKER_URL = os.environ.get("KAFKA_BROKER_URL")
@@ -15,7 +16,7 @@ MOCKAROO_API_KEY = os.environ.get("access_token")  # Mockaroo API key
 MOCKAROO_SCHEMA_ID = os.environ.get("schema_id")  # Mockaroo schema ID
 
 def get_mockaroo_data():
-    # Make a request to the Mockaroo API to get data for one row
+    # Make a request to the Mockaroo API to get data
     url = f"https://api.mockaroo.com/api/{MOCKAROO_SCHEMA_ID}.json"
     params = {"count": 1, "key": MOCKAROO_API_KEY}
     print("Requesting URL:", url)
